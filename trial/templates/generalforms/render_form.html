@@ -1,0 +1,362 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if title %}
+            <title>{{ title }} Leave Form</title>
+        {% else %}
+            <title>Ghana Highway Authority- Being a world-class provider of safe road infrastructure.</title>
+        {% endif %}
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]> 
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+       
+    </head>
+    <style>
+
+        *{
+            font-family: sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+        }
+        label{
+            font-weight: lighter;
+        }
+        h4{
+            font-size: 15px;
+        }
+        table, thead, th, tr, td{
+            border: 1px black solid ;
+            border-collapse: collapse;
+            padding: 3px;
+        }
+        input, textarea{
+            border: none;
+        }
+    </style>
+    <body>
+        <div class="container"> 
+            <div class="row blog_details_inner" style="margin-left: 2%;">
+                <div style="align-items: center; text-align: center; font-weight: bold;">
+                    <p>GHANA HIGHWAY AUTHORITY</p>
+                    <p>ASHANTI REGION</p>
+                    <img src="{{ url_for('static', filename='img/coatofarms.png', _external=True) }}" alt="coatofarms.png" height="170px" width="200px">
+                    <p style="margin-top: 1%;">APPLICATION FOR LEAVE</p>
+                </div>
+                <h3 id="table_h3" style="margin-top: 1%;"></h3>
+                <div style="padding-bottom: 20px;">
+                    <div class="col-md-8" style="float: left;">
+                        <div>
+                            <label for="name">NAME:&nbsp;</label>
+                            <input type="text" size="38" value="{{ post.name }}">
+                        </div>
+                        <div>
+                            <label for="name">RANK:&nbsp;</label>
+                            <input type="text" size="38" value="{{ post.rank }}" style="margin-left: 1.5px;" >
+                        </div>
+                        <div>
+                            <label for="name">DATE:&nbsp;</label>
+                            <input type="text" size="38" value="{{ post.date_app }}" style="margin-left: 3.5px;">
+                        </div> 
+                    </div>
+                    <div class="col-md-8" style="float: left; margin-left: 2%;">
+                        <div>
+                            <label for="name">SECTION:&nbsp;</label>
+                            <input type="text" size="38" value="{{ post.section }}">
+                        </div>
+                        <div>
+                            <label for="name">TEL:&nbsp;</label>
+                            <input type="text" size="38" value="{{ post.tele_no }}" style="margin-left: 38.6px;">
+                        </div>
+                    </div>
+                </div><br>
+                <div style="margin-top: 50px;">
+                    <table style="width: 95%; margin-bottom: 2%;">
+                        <thead>
+                            <tr>
+                                <th >LEAVE CATEGORY</th>
+                                <th>NUMBER OF DAYS</th>
+                                <th>DURATION(ALL DATES INCLUDED)</th>
+                                <th>CONTRACT DETAILS WHILE ON LEAVE</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% if post.leave_cat == "Annual/Part Leave" %}
+                                    <td><label for="">1. ANNUAL/PART TIME</label></td>
+                                    <td>
+                                        <input type="text" value="{{ post.no_of_days }}">
+                                    </td>
+                                    <td>
+                                        <label for="">FROM :</label>
+                                        <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                        <label for="">TO :</label>
+                                        <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;" >
+                                    </td>
+                                    <td rowspan="3" >
+                                        <h4 style="margin-top: -20px;">ADDRESS:</h4>
+                                        <textarea name="" id="" cols="" rows="4" style="margin-top: 2px; width: 98%;">{{ post.address }}</textarea>
+                                    </td>
+                                {% else %}
+                                    <td><label for="">1. ANNUAL/PART TIME</label></td>
+                                    <td>
+                                        <input type="text" value=>
+                                    </td>
+                                    <td>
+                                        <label for="">FROM :</label>
+                                        <input type="text" style="width: 70%;"><br>
+                                        <label for="">TO :</label>
+                                        <input type="text" style="width: 70%; margin-left: 23.5px;" >
+                                    </td>
+                                    <td rowspan="3" >
+                                        <h4 style="margin-top: -20px;">ADDRESS:</h4>
+                                        <textarea name="" id="" cols="" rows="4" style="margin-top: 2px; width: 98%;">{{ post.address }}</textarea>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Casual Leave" %}
+                                    <td><label for="">2. CASUAL LEAVE</label></td>
+                                    <td>
+                                        <input type="text" value="{{ post.no_of_days }}">
+                                    </td>
+                                    <td>
+                                        <label for="">FROM :</label>
+                                        <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                        <label for="">TO :</label>
+                                        <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                    </td>
+                                {% else %}
+                                    <td><label for="">2. CASUAL LEAVE</label></td>
+                                    <td>
+                                        <input type="text">
+                                    </td>
+                                    <td>
+                                        <label for="">FROM :</label>
+                                        <input type="text" style="width: 70%;"><br>
+                                        <label for="">TO :</label>
+                                        <input type="text"  style="width: 70%; margin-left: 23.5px;">
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Maternity Leave" %}
+                                <td><label for="">3. MATERNITY LEAVE</label></td>
+                                <td>
+                                    <input type="text" value="{{post.no_of_days}}">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% else %}
+                                <td><label for="">3. MATERNITY LEAVE</label></td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Sick Leave" %}
+                                <td><label for="">4. SICK LEAVE</label></td>
+                                <td>
+                                    <input type="text" value="{{post.no_of_days}}">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                <td rowspan="3">
+                                    <h4 style="margin-top: -20px;">MOBILE NO:</h4>
+                                    <textarea name="" id="" cols="" rows="4" style="margin-top: 2px; width: 98%;">{{ post.mobile_no }}</textarea>
+                                </td>
+                                {% else %}
+                                <td><label for="">4. SICK LEAVE</label></td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                <td rowspan="3">
+                                    <h4 style="margin-top: -20px;">MOBILE NO:</h4>
+                                    <textarea name="" id="" cols="" rows="4" style="margin-top: 2px; width: 98%;">{{ post.mobile_no }}</textarea>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Compassionate Leave" %}
+                                <td><label for="">5. COMPASSIONATE LEAVE</label></td>
+                                <td>
+                                    <input type="text" value="{{post.no_of_days}}">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% else %}
+                                <td><label for="">5. COMPASSIONATE LEAVE</label></td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Study Leave" %}
+                                <td><label for="">6. STUDY LEAVE</label></td>
+                                <td>
+                                    <input type="text" value="{{post.no_of_days}}">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% else %}
+                                <td><label for="">6. STUDY LEAVE</label></td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Examination Leave" %}
+                                <td><label for="">7. EXAMINATION LEAVE</label></td>
+                                <td>
+                                    <input type="text" value="{{post.no_of_days}}">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                <td rowspan="3">
+                                    <h4 style="margin-top: 13px;">EMAIL:</h4>
+                                    <textarea name="" id="" cols="" rows="5" style="margin-top: 1px; width: 98%;">{{ post.email }}</textarea>
+                                </td>
+                                {% else %}
+                                <td><label for="">7. EXAMINATION LEAVE</label></td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                <td rowspan="3">
+                                    <h4 style="margin-top: 13px;">EMAIL:</h4>
+                                    <textarea name="" id="" cols="" rows="5" style="margin-top: 1px; width: 98%;">{{ post.email }}</textarea>
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                {% if post.leave_cat == "Resettlement Leave" %}
+                                <td><label for="">8. RESETTLEMENT LEAVE</label></td>
+                                <td>
+                                    <input type="text" value="{{post.no_of_days}}">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" value="{{ post.start_date }}" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" value="{{ post.end_date }}" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% else %}
+                                <td><label for="">8. RESETTLEMENT LEAVE</label></td>
+                                <td>
+                                    <input type="text">
+                                </td>
+                                <td>
+                                    <label for="">FROM :</label>
+                                    <input type="text" style="width: 70%;"><br>
+                                    <label for="">TO :</label>
+                                    <input type="text" style="width: 70%; margin-left: 23.5px;">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <label for="">ACCUMULATED LEAVE:</label><br>
+                                    <textarea name="" id="" cols="30" rows="4" style="margin-top: 2px; width: 98%;">khgakdj</textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" >
+                                    <label for="">SUPPLEMENTARY INFORMATION:</label><br>
+                                    <textarea name="" id="" cols="30" rows="4" style="margin-top: 2px; width: 98%;">{{ post.supp_info }}</textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                <div>
+                    <div class="col-sm-4" style="float: left;">
+                        <div>
+                            <label for="">EFFECTIVE DATE OF LEAVE:</label>
+                            <input type="text" value="{{ post.effec_date }}" style="margin-left: 3px;">
+                        </div>
+                        <div>
+                            <label for="">DAYS TO PROCEED:</label>
+                            <input type="text" value="{{ post.days_proceed }}" style="margin-left: 59px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div>
+                            <label for="">OUTSTANDING LEAVE DAY(S):</label>
+                            <input type="text" value="{{ post.outs_days }}" style="margin-left: 2px;">
+                        </div>
+                        <div>
+                            <label for="">DATE OF RESUMPTION:</label>
+                            <input type="text" value="{{ post.resump_date }}" style="margin-left: 46px;">
+                        </div> 
+                    </div><br>
+                    <div class="col-sm-4">
+                        <div>
+                            <label for="">DATE:</label>
+                            <input type="text" value="{{ post.date_app }}" style="margin-left: 163px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

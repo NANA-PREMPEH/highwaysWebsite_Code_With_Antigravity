@@ -1,0 +1,35 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<style>
+    @media only screen and (max-width:600px) {
+        .thumbnails a {
+            float: none;
+        }
+
+        .thumbnails img {
+            height: 202px;
+            width: 295px;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">Photo Gallery</h3>
+            <section>
+                <div class="thumbnails group">
+                    {% for picture in pics %}
+                    <a href="{{ url_for('static', filename='gallery/' + picture.image_file) }}" data-lightbox="gallery"
+                        data-title="Image {{ loop.index }}" data-alt="image-1">
+                        <img src="{{ url_for('static', filename='gallery/' + picture.image_file) }}" alt="image-1">
+                    </a>
+                    {% endfor %}
+
+                </div>
+            </section>
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}

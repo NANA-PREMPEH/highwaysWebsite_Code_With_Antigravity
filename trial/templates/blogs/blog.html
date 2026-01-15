@@ -1,0 +1,131 @@
+{% extends "includes/layout.html" %}
+
+{% block content %}
+
+<style>
+    @media only screen and (max-width:600px) {
+        #img_new{
+            width: 302px !important;
+            height: 360px !important;
+        }
+
+        /* for aligning the button line of the page header */
+        .row{
+            margin-right: 0px;
+        }
+    }
+</style>
+    <section class="blog_details_area p_100">
+        <div class="container">
+            <div class="row blog_details_inner" style="margin-left: 2%;">
+                <h3 class="table_h3" id="table_h3" style="margin-top: -5%;">LATEST NEWS</h3> 
+                <div class="col-md-8">
+                    {% if posts %}
+                    <div>
+                        {% for post in posts[:1] %}
+                        <div class="blog_details_img">
+                            <img id="img_new" src="{{ url_for('static', filename='blog_images/' +post.image) }}" style="width: 720px; height: 454px;" alt="">
+                            <div class="b_date">
+                                <h3>{{ post.pub_date.strftime('%d') }}</h3>
+                                <h5>{{ post.pub_date.strftime('%B, %Y') }}</h5>
+                            </div>
+                        </div>
+                        <div class="blog_d_text">
+                            <h6>Posted by <a href="#">{{ post.author.username }}</h6>
+                            <a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}"><h3>{{ post.title }}</h3></a>
+                            <p>{{ post.body | truncate(300, True) |safe }}<a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}">Read more</a></p>
+                        </div>
+                        {% endfor %}
+                    </div>
+    
+                    <div class="like_post"> 
+                        <h3 style="padding-bottom: 20px;">You may also like</h3>
+                        <div class="row">
+                            {% for post in posts_pag.items %}
+                            <div class="col-sm-6" style="padding-bottom: 20px;">
+                                <div class="like_post_item">
+                                    <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 308px; height: 235px;" alt="">
+                                    <h5><a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}">{{ post.title | truncate(80, True) }}</a></h5>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <nav aria-label="Page navigation" style="margin-left: 8px; margin-top: 5px;">
+                            <ul class="pagination">
+                                <li class=" {% if not posts_pag.has_prev %} disabled {% endif %} ">
+                                    <a href="{{ url_for('blogs.blog', page=posts_pag.prev_num) }}" aria-label="Previous">
+                                        <span aria-hidden="true">prev</span>
+                                    </a>
+                                </li>
+    
+                                {% for page_num in posts_pag.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                                    <li class=" {% if page_num == posts_pag.page %} active {% endif %} ">
+                                        <a href="{{ url_for('blogs.blog', page=page_num) }}">{{ page_num }} 
+                                            <span class="sr-only">(current)</span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                                <li class=" {% if not posts_pag.has_next %} disabled {% endif %} ">
+                                    <a href="{{ url_for('blogs.blog', page=posts_pag.next_num) }}" aria-label="Next">
+                                    <span aria-hidden="true">next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav> 
+                    </div>
+                    {% else %}
+                    <div id="no_news">
+                        There are no Posts
+                    </div>
+                    {% endif %} 
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar_area">
+                        
+                        <aside class="right_widget r_post_widget">
+                            <div class="r_w_title">
+                                <h3 style="font-weight: bolder;">Trending Posts</h3>
+                            </div>
+                            {% if posts %}
+                            <div class="r_post_inner">
+                                {% for post in posts[:4] %}
+                                <div class="r_post_item">
+                                    <img src="{{ url_for('static', filename='blog_images/' + post.image) }}" style="width: 246px; height: 123px;" alt="image_file">
+                                    <a href="{{ url_for('blogs.blog_post', post_id=post.id, slug=post.slug) }}"><p>{{ post.title | truncate(80, True) }}</p></a>
+                                </div>
+                                {% endfor %} 
+                            </div>
+                            {% else %}
+                            <div>
+                                No Trending Posts
+                            </div>
+                            {% endif %}
+                        </aside>
+                        <aside class="right_widget r_social_widget">
+                            <div class="r_w_title">
+                                <h3>we are social</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </aside>
+                        <aside class="right_widget r_twitter_widget">
+                            <div class="r_w_title">
+                                <h3>twitter feed</h3>
+                            </div>
+                            <div class="tweets_feed">
+                                <a class="twitter-timeline" data-width="300" data-height="300" href="https://www.twitter.com/highwaysghana?ref_src=twsrc%5Etfw">Tweets by Ghana_Highway</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Blog Details Area =================-->
+{% endblock content %}

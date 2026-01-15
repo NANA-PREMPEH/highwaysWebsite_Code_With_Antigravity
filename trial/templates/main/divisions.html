@@ -1,0 +1,113 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<!--================Latest News Area =================-->
+<section class="latest_news_area" style="margin-left: 5%;">
+    <div class="container">
+        <div class="main_c_b_title">
+            <h2 style="margin-bottom: 40px;">DEPARTMENT</h2>
+        </div>
+        <div class="row latest_news_inner">
+            <div class="col-md-4 col-sm-6">
+                <div class="latest_news_item">
+                    <div class="news_image">
+                        <!-- <img src="{{ url_for('static', filename='img/blog/l-news/l-news-1.jpg') }}" alt=""> -->
+                        <img
+                            src="{{ url_for('static', filename='img/HIGHWAYS LOGO DEV.jpg') }}"
+                            alt="Development Logo is available">
+
+                    </div>
+                    <div class="news_content">
+                        <a href="#"><h4>Development Department</h4></a>
+                        <table
+                            style="width: 100%; text-align: left; font-size: 16px;">
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Materials</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Contracts</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Quantity Surveying</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Survey &#38; Design</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Road Safety and
+                                    Environment</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Planning</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Bridges</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="latest_news_item">
+                    <div class="news_image">
+                        <!-- <img src="{{ url_for('static', filename='img/blog/l-news/l-news-2.jpg') }}" alt=""> -->
+                        <img
+                            src="{{ url_for('static', filename='img/HIGHWAYS LOGO ADMIN.jpg') }}"
+                            alt="Admin Logo Image not found">
+                    </div>
+                    <div class="news_content" style="padding-bottom: 45px;">
+                        <a href="#"><h4>Administration Department</h4></a>
+                        <table
+                            style="width: 100%; text-align: left; font-size: 16px;">
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Human Resources</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Training &#38;
+                                    Development</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;MIS Division</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Finance</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Public Affairs</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Legal Services</td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="latest_news_item">
+                    <div class="news_image">
+                        <img
+                            src="{{ url_for('static', filename='img/HIGHWAYS LOGO MTCE.jpg') }}"
+                            alt="Maintenance Logo Image not found">
+                    </div>
+                    <div class="news_content" style="padding-bottom:116px;">
+                        <a href="#"><h4>Maintenance Department</h4></a>
+                        <table
+                            style="width: 100%; text-align: left; font-size: 16px;">
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Road Maintenance</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Plant &#38; Equipment</td>
+                            </tr>
+                            <tr>
+                                <td>&bull;&nbsp;&nbsp;Regional Highway</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Latest News Area =================-->
+{% endblock content %}

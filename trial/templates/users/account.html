@@ -1,0 +1,88 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 4%;">
+        <div class="col-md-8"  style="margin-top: 2px;">
+            <div class="modal_th" style="height: 630px;">
+                <div class="media" style="margin-left: 20%; font-family: 'Montserrat', sans-serif;"> 
+                    <img class="rounded-circle" style="border-radius: 50%; width: 150px; float: left; height: 150px;" 
+                        src="{{  url_for('static', filename='profile_pics/' + current_user.image_file) }}">
+                        <div style="margin-top: 5%; margin-left: 30%;">
+                            <h2 class="" style="font-size: 21px; font-weight: 550; margin-left: -4px;">{{ current_user.name }}</h2> 
+                            <h2 class="" style="font-size: 16px; font-weight: 300; margin-left: -4px; margin-top: 6px;">{{ current_user.job_pos }}</h2> 
+                            <p style="margin-top: 5px; font-weight: bold;">{{ current_user.email }}</p>
+                        </div>
+                </div>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="loginwrap" style="margin-top: 4%;">
+                            <legend>Account Info</legend>
+                        <div class="form-group">
+                            {{ form.acc_gen.label }}
+
+                            <!--If form had errors-->
+                            {% if form.acc_gen.errors %}
+                                {{ form.acc_gen(class="form-control", style="border-color: #a94442;", readonly=true) }}
+                                <div class="form-group has-error">
+                                    {% for error in form.acc_gen.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %}
+                                {{ form.acc_gen(class="form-control", readonly=true)}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.dob.label }}
+
+                            <!--If form had errors-->
+                            {% if form.dob.errors %}
+                                {{ form.dob(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.dob.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %} 
+                                {{ form.dob(class="form-control", readonly=true)}}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.email.label }}
+
+                            <!--If form had errors-->
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control", style="border-color: #a94442;") }}
+                                <div class="form-group has-error">
+                                    {% for error in form.email.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            <!--if there are no errors-->
+                            {% else %} 
+                                {{ form.email(class="form-control")}}
+                            {% endif %}
+                            
+                        </div>
+                        <div class="form-group">
+                            {{ form.picture.label() }}
+                            {{ form.picture}}
+                            {% if form.picture.errors %}
+                                {% for error in form.picture.errors %}
+                                    <span class="text-danger">{{ error }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form.submit(class="sub_btn") }} <br>
+                        </div>     
+                    </div> 
+                    {{ form.csrf_token }} 
+                </form>
+            </div> 
+        </div>
+        {% include "includes/sidebar.html" %}
+    </div>
+</div>
+{% endblock content %}
