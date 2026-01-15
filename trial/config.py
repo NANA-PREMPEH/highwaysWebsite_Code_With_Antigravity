@@ -6,7 +6,8 @@ class Config:
     
     SECRET_KEY = os.environ.get('SECRET_KEY')
     # SQLALCHEMY_DATABASE_URI = os.environ.get('JAWSDB_URL') # for deployment on cpanel
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://highwaysgov_desktopuser:@desktopuser@197.253.67.106/highways_ghadb"
+    # SQLALCHEMY_DATABASE_URI = "mysql+pymysql://highwaysgov_desktopuser:@desktopuser@197.253.67.106/highways_ghadb" # for deployment on cpanel (old Db)
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://highwaysgov_desktopuser:@desktopuser@197.253.67.106/highwaysgov_db_v1" # for deployment on cpanel (new Db)
     # SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:root@localhost/for_antigravity" # for local development
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAIL_SERVER = 'smtp.googlemail.com'

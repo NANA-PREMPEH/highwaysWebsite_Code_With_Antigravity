@@ -91,7 +91,7 @@ class GalleryForm(FlaskForm):
     category = SelectField('Category', choices=[('', 'Choose'), ('Training', 'Training'), ('Sod cutting', 'Sod cutting'), 
                             ('Inauguration', 'Inauguration'), ('Road Supervision', 'Road Supervision'), 
                             ('Road Commissioning', 'Road Commissioning'), ('Road inspection', 'Road inspection'), 
-                            ('Others', 'Others')], validators=[DataRequired()])
+                            ('Meetings', 'Meetings'), ('Others', 'Others')], validators=[DataRequired()])
     other_category = StringField('Other Category')
     picture = FileField('Upload Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     submit = SubmitField('Submit')
