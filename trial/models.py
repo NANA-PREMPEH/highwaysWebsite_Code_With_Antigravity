@@ -487,6 +487,8 @@ class Roadcondition2K19(db.Model):
 class Gallery(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image_file = db.Column(db.String(50))
+    name = db.Column(db.String(120), nullable=True)
+    category = db.Column(db.String(120), nullable=True)
 
     def __repr__(self) :
         return f"BlogImages('{self.image_file}')"

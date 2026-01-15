@@ -38,6 +38,33 @@
                         {% endif %}
                     </div>
                     <div class="form-group">
+                        {{ form.name.label() }}
+                        {{ form.name(class="form-control") }}
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.category.label() }}
+                        {{ form.category(class="form-control", id="category_select") }}
+                        {% if form.category.errors %}
+                            {% for error in form.category.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group" id="other_category_div" style="display:none;">
+                        {{ form.other_category.label() }}
+                        {{ form.other_category(class="form-control") }}
+                        {% if form.other_category.errors %}
+                            {% for error in form.other_category.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
                         {{ form.submit(class="btn btn-primary") }} <br>
                     </div>     
                 </div> 
@@ -55,6 +82,18 @@
                 $(".datepicker").datetimepicker({
                     format: 'YYYY-MM-DD',                         
                 });
+                
+                $('#category_select').change(function(){
+                    if($(this).val() == 'Others'){
+                        $('#other_category_div').show();
+                    } else {
+                        $('#other_category_div').hide();
+                    }
+                });
+                
+                if($('#category_select').val() == 'Others'){
+                     $('#other_category_div').show();
+                }
             });
         </script>
     </body>

@@ -131,10 +131,15 @@ def add_image():
     form = GalleryForm()
     if form.validate_on_submit():
         picture = save_gallery_image(form.picture.data)
-        pic = Gallery(image_file=picture)
+        category = form.category.data
+        if category == 'Others':
+            category = form.other_category.data
+        
+        pic = Gallery(image_file=picture, name=form.name.data, category=category)
         db.session.add(pic)
         db.session.commit()
         flash(f"Image added successfully", 'success')
+        return redirect(url_for('admin.gallery'))
     return render_template('admin/gallery_pics.html', form=form)
 
 #Update Blog Post
@@ -193,9 +198,27 @@ def update_image(image_id):
         if form.picture.data:
             picture = save_gallery_image(form.picture.data)
             pic.image_file = picture
+        
+        category = form.category.data
+        if category == 'Others':
+            category = form.other_category.data
+        
+        pic.name = form.name.data
+        pic.category = category
+        
         db.session.commit()
         flash('Image has been updated!', 'success')
-        return redirect(request.url)
+        return redirect(url_for('admin.gallery'))
+    
+    form.name.data = pic.name
+    # Logic to populate category. If category is not in choices, set to Others and populate other_category
+    valid_choices = [c[0] for c in form.category.choices]
+    if pic.category in valid_choices:
+        form.category.data = pic.category
+    else:
+        form.category.data = 'Others'
+        form.other_category.data = pic.category
+        
     return render_template('admin/update_image.html', form=form, pic=pic)
 
 #Delete Images
