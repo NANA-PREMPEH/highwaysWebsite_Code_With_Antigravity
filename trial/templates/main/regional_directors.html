@@ -1,0 +1,174 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    table {
+        font-family: "Montserrat", sans-serif;
+        width: 100%;
+    }
+
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 1px;
+        line-height: 20px;
+    }
+
+    th {
+        border: 1px solid #dddddd;
+        border-collapse: collapse;
+        text-align: left;
+        padding: 8px;
+        line-height: 20px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    /* table tr td a {
+        color: #ffcd00;
+    } */
+</style>
+<div class="container">
+    <div class="row blog_details_inner"
+        style="margin-top: 30px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">Regional Directors</h3>
+
+            <div style="overflow-x:auto;">
+                <table>
+                    <tr>
+                        <th>NO.</th>
+                        <th>NAME</th>
+                        <th>STATION</th>
+                        <th>EMAIL</th>
+                    </tr>
+                    <!-- <tr>
+                    <td>1</td>
+                    <td>CHARLES ADUBOFOUR</td>
+                    <td>EASTERN</td>
+                    <td><a href="mailto:charles.adubofour@highways.gov.gh">charles.adubofour@highways.gov.gh</a></td>
+                </tr> -->
+                    <tr>
+                        <td>1</td>
+                        <td>Ing. Bernard Owusu</td>
+                        <td>WESTERN</td>
+                        <td><a
+                                href="mailto:owusu.bernard@highways.gov.gh">owusu.bernard@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Ing. Winifred E. Adjei-Sarpong</td>
+                        <td>WESTERN NORTH</td>
+                        <td><a
+                                href="mailto:winifred.adjei-sarpong@highways.gov.gh">winifred.adjei-sarpong@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Ing. Emmanuel Noel Antwi</td>
+                        <td>UPPER EAST</td>
+                        <td><a
+                                href="mailto:emmanuel.antwi@highways.gov.gh">emmanuel.antwi@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Ing. Lovestone Kwame Damalie</td>
+                        <td>UPPER WEST</td>
+                        <td><a
+                                href="mailto:lovestone.damalie@highways.gov.gh">lovestone.damalie@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Emmanuel Okang-klu</td>
+                        <td>BONO EAST</td>
+                        <td><a
+                                href="mailto:emmanuel.okang-klu@highways.gov.gh">emmanuel.okang-klu@highways.gov.gh</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Salisu M. Mahamah</td>
+                        <td>ASHANTI</td>
+                        <td><a
+                                href="mailto:salisu.mahamah@highways.gov.gh">salisu.mahamah@highways.gov.gh</a></t>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Aminu Issaka Abubakar</td>
+                        <td>EASTERN</td>
+                        <td><a href="mailto:#"></a></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Edmund Obeng</td>
+                        <td>BONO</td>
+                        <td><a
+                                href="mailto:edmund.obeng@highways.gov.gh">edmund.obeng@highways.gov.gh</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Dzefi Sefiamor</td>
+                        <td>SAVANNAH</td>
+                        <td><a
+                                href="mailto:sefiamor.dzefi@highways.gov.gh">sefiamor.dzefi@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Divine Kehodu Noagbedaa</td>
+                        <td>OTI</td>
+                        <td><a
+                                href="mailto:noagbedaa.Kehodu@highways.gov.gh">noagbedaa.Kehodu@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Agyeman Baah</td>
+                        <td>AHAFO</td>
+                        <td><a
+                                href="mailto:agyeman.baah@highways.gov.gh">agyeman.baah@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Mercy A. Payne</td>
+                        <td>CENTRAL</td>
+                        <td><a
+                                href="mailto:mercy.payne@highways.gov.gh">mercy.payne@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>Mark Okyere</td>
+                        <td>NORTHERN</td>
+                        <td><a
+                                href="mailto:mark.okyere@highways.gov.gh">mark.okyere@highways.gov.gh</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>Andrew Yaw Okere</td>
+                        <td>NORTH EAST</td>
+                        <td><a
+                                href="mailto:andrew.okere@highways.gov.gh">andrew.okere@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td>Harold Atobra-Acheampong</td>
+                        <td>ACCRA NORTH</td>
+                        <td><a
+                                href="mailto:harold.atobra-acheampong@highways.gov.gh">harold.atobra-acheampong@highways.gov.gh</a></td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td>Faustina Oppong-Yeboah</td>
+                        <td>VOLTA</td>
+                        <td><a
+                                href="mailto:faustina.oppong-yeboah@highways.gov.gh">faustina.oppong-yeboah@highways.gov.gh</a></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %}

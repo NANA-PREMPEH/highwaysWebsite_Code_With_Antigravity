@@ -1,0 +1,126 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+
+<style>
+    .axl {
+        width: 250px;
+        height: 40px;
+        display: inline-block;
+        background-color: #b8c3ff;
+        color: #333;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 44px;
+        border-radius: 10px;
+        line-height: 28px;
+        font-size: 18px;
+        font-family: "Montserrat", sans-serif;
+        margin-bottom: 15px;
+    }
+
+    .axl:hover {
+        background-color: #01368c;
+        color: #fff;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        padding-bottom: 10px;
+        font-weight: bold;
+    }
+
+    /* This helps for the image to align with the page */
+    #align_image {
+        width: 860px
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .axl {
+            width: 335px;
+        }
+
+        #periodic {
+            flex-direction: column;
+
+        }
+
+        .img_new {
+            /* height: 150px;
+            width: 335px; */
+            /* vertical-align: 10%; */
+            /* margin-left: 0px; */
+            background-image: url(static/img/axleload/axleload_d_limit_long.jpg) !important;
+           
+        }
+
+        img[src^="axleload_d_limit_new"] {
+            background-image: url("static/img/axleload/axleload_d_limit_long.jpg") !important;
+        }
+
+        #periodic {
+            flex-direction: column;
+        }
+
+        .text {
+            /* height: 320px; */
+            width: 325px;
+            text-align: justify center;
+        }
+
+
+
+        #align_image {
+            /* width: 0px; */
+            width: auto;
+        }
+
+        #no_news{
+            text-align: center;
+        }
+
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-left: 2%;">
+        <h3 class="table_h3" id="table_h3">AXLE LOAD</h3>
+        <div id="periodic" style="margin-top: 2%; display: flex;">
+            <!-- <div class="col-md-8" id="periodic" style="margin-top: 2%; display: flex;"> -->
+            <div style="display: block;">
+                <a class="axl" href="{{ url_for('main.axle_load') }}">Introduction</a>
+                <a class="axl" href="{{ url_for('main.w_protocol') }}">Weighing Protocols</a>
+                <a class="axl" href="{{ url_for('main.w_station') }}">Weighbridge Stations</a>
+                <a class="axl" href="{{ url_for('main.d_limit') }}">Dimension Limits</a>
+                <a class="axl" href="{{ url_for('main.overload_fine') }}">Overload Fine</a>
+                <a class="axl" href="{{ url_for('main.effects') }}">Effects</a>
+            </div>
+
+            <div style="font-size: 18px; font-family: 'Montserrat', sans-serif;">
+                <!-- <div class="inv-region region-content col-sm-12 col-md-9 col-lg-9"> -->
+
+                <!-- dimension limits STARTs HERE -->
+                <div id="align_image" style="line-height: 26px; padding-left: 2px;  margin-left: 2%;">
+                    <h2 id="no_news">Permissible axle load, gross weight and dimension limits</h2>
+
+                    <!-- for change of images based on the screen size -->
+                    <picture>
+                        <source srcset="{{ url_for('static', filename='img/axleload/axleload_d_limit_long.jpg')}}" media="(max-width: 600px)">
+                        <img src="{{ url_for('static', filename='img/axleload/axleload_d_limit_new.jpg')}}" alt="Axleload limit picture">
+                    </picture>
+
+
+                    <!-- <img class="img_new" style="height: 50%;"
+                        src="{{ url_for('static', filename='img/axleload/axleload_d_limit_new.jpg')}}"
+                        alt="no image for Axleload Dimension Limit" /> -->
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock content %}

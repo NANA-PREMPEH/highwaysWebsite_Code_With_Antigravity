@@ -1,0 +1,108 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<style>
+    @media only screen and (max-width:600px) {
+        .thumbnails a {
+            float: none;
+        }
+
+        .thumbnails img {
+            height: 202px;
+            width: 295px;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3">Photo Gallery</h3>
+            <section>
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-bottom: 20px;">
+                        <button class="btn btn-default filter-button" data-filter="all">All</button>
+                        <button class="btn btn-default filter-button" data-filter="Training">Training</button>
+                        <button class="btn btn-default filter-button" data-filter="Sod cutting">Sod cutting</button>
+                        <button class="btn btn-default filter-button" data-filter="Inauguration">Inauguration</button>
+                        <button class="btn btn-default filter-button" data-filter="Road Supervision">Road Supervision</button>
+                        <button class="btn btn-default filter-button" data-filter="Road Commissioning">Road Commissioning</button>
+                        <button class="btn btn-default filter-button" data-filter="Road inspection">Road inspection</button>
+                        <button class="btn btn-default filter-button" data-filter="Meetings">Meetings</button>
+                        <button class="btn btn-default filter-button" data-filter="Others">Others</button>
+                    </div>
+                </div>
+
+                <div class="thumbnails group clearfix">
+                    {% for picture in pics %}
+                    <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6" data-category="{{ picture.category }}">
+                         <a href="{{ url_for('static', filename='gallery/' + picture.image_file) }}" data-lightbox="gallery"
+                            data-title="{{ picture.name }} - {{ picture.category }}" data-alt="{{ picture.name }}">
+                            <img src="{{ url_for('static', filename='gallery/' + picture.image_file) }}" alt="{{ picture.name }}" style="width: 100%; height: 200px; object-fit: cover;">
+                        </a>
+                        <div class="text-center" style="margin-top: 5px;">
+                            <strong>{{ picture.name }}</strong><br>
+                            <small>{{ picture.category }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+    </div>
+</div>
+
+<style>
+    .filter-button {
+        font-size: 18px;
+        border: 1px solid #01368c;
+        border-radius: 5px;
+        text-align: center;
+        color: #01368c;
+        margin-bottom: 30px;
+    }
+    .filter-button:hover {
+        font-size: 18px;
+        border: 1px solid #01368c;
+        border-radius: 5px;
+        text-align: center;
+        color: #ffffff;
+        background-color: #01368c;
+    }
+    .btn-default:active .filter-button:active {
+        background-color: #01368c;
+        color: white;
+    }
+</style>
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function(){
+        $(".filter-button").click(function(){
+            var value = $(this).attr('data-filter');
+            
+            // Reset all buttons style
+            $(".filter-button").css("background-color", "").css("color", "#01368c");
+            
+            // Set clicked button style
+            $(this).css("background-color", "#01368c").css("color", "white");
+
+            if(value == "all")
+            {
+                $('.gallery_product').show(1000);
+            }
+            else
+            {
+                $(".gallery_product").not('[data-category="'+value+'"]').hide(3000);
+                $('.gallery_product').filter('[data-category="'+value+'"]').show(3000);
+            }
+        });
+        
+        // Active "All" button by default or first one
+        // $('.filter-button[data-filter="all"]').click();
+    });
+</script>
+{% endblock %}

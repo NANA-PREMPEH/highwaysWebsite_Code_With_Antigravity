@@ -1,0 +1,29 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<style>
+    .img_div {
+        padding: 15px 15px 15px 0px;
+    }
+
+    .img_div img {
+        width: 100%;
+        height: 99%;
+    }
+</style>
+<div class="container">
+    <div class="row blog_details_inner" style="margin-top: 50px; margin-left: 2%;">
+        <div class="col-md-8" id="tbl_h3" style="margin-top: -2%;">
+            <h3 id="table_h3" >Chief Executive's Office</h3>
+            <section>
+                <div id="no_news">
+                  <div class="img_div">
+                      <img src="{{ url_for('static', filename='img/leaders/ce message - Mallam.jpg' )}}" alt="C.E.O's Image is not found">
+                  </div>
+                </div>
+            </section>
+               
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+</div> 
+{% endblock content %}

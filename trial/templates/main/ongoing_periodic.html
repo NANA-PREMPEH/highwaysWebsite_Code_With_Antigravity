@@ -1,0 +1,88 @@
+{% extends "includes/layout.html" %}
+{% block content %}
+<div class="container"> 
+    <div class="row blog_details_inner" style="margin-left: 2%;"> 
+        <h3 class="table_h3" id="table_h3">ONGOING PERIODIC PROJECTS</h3> 
+        <div class="col-md-8" id="periodic" style="margin-top: 2%;">
+            <div class="col-sm-4">
+                <table> 
+                    <tbody>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.resealing') }}">Resealing</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.upgrading') }}">Upgrading</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.part_reconst') }}">Partial Reconstruction</a></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.surface_dressing') }}">Surface Structuring</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.regravelling') }}">Regravelling</a></td>
+                        </tr>                        
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.asphalticoverlay') }}">Alsphaltic Overlay</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.construction') }}">Construction</a></td>
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.supply') }}">Installation</a></td> 
+                        </tr>
+                        <tr>
+                            <td><a class="view_btn1" href="{{ url_for('ongoing_proj.reconstruction') }}">Reconstruction</a></td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div><br><br><br>
+            <div style="margin-top: 1em;">
+                <form action="" method="post">
+                    <div class="col-md-6" >
+                        <label for="start_date" style="font-size: 15px;">From :</label>
+                        <div class="input-group date" id="datetimepicker6">
+                            <input type="text" class="form-control" name="start_date" id="start_date" required>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="end_date" style="font-size: 15px;">To :</label>
+                        <div class="input-group date" id="datetimepicker7">
+                            <input type="text" class="form-control" name="end_date" id="end_date" required>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div><br>
+                        <div class="col-md-6" id="ongoing_proj_sum">
+                            <label for="" style="font-size: 15px;">Contract Sum</label>
+                            <input class="form-control" type="text" value="{{ results }}" readonly>
+                        </div><br><br><br>
+                    <div class="form-group col-md-6">
+                        <input type="submit" class="btn btn-info" id="ongoing_proj_sub" name="submit" value="Submit">
+                    </div>
+                    {{ form.csrf_token }} 
+                </form>        
+            </div>
+        </div>
+        {% include 'includes/sidebar.html' %}
+    </div>
+</div>
+{% endblock content %} 
