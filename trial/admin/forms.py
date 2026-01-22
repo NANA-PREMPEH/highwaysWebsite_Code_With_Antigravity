@@ -89,7 +89,7 @@ class BlogPostForm(FlaskForm):
 class GalleryForm(FlaskForm):
     name = StringField('Name of Picture', validators=[DataRequired()])
     category = SelectField('Category', choices=[('', 'Choose'), ('Training', 'Training'), ('Sod cutting', 'Sod cutting'), 
-                            ('Inauguration', 'Inauguration'), ('Road Supervision', 'Road Supervision'), 
+                            ('Inauguration', 'Inauguration'), ('Contract Signing', 'Contract Signing'), 
                             ('Road Commissioning', 'Road Commissioning'), ('Road inspection', 'Road inspection'), 
                             ('Meetings', 'Meetings'), ('Others', 'Others')], validators=[DataRequired()])
     other_category = StringField('Other Category')
