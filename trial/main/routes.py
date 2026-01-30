@@ -138,6 +138,25 @@ def completed_periodic():
         
     return render_template('main/completed_periodic.html', title='Completed Periodic Projects', posts=posts, form=form)
 
+# adding new project list page
+@main.route('/completed/periodicc', methods=['GET', 'POST'])
+def completed_projects_mtce():
+    
+    form = DateForm()
+    posts = Post.query.order_by(Post.id.desc()).all() 
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']
+        results = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM completed_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+        
+        return jsonify({'data': render_template('main/completed_periodic_json.html', results=results, form=form)}) 
+        
+    return render_template('main/completed_projects_mtce.html', title='Completed Periodic Projects', posts=posts, form=form)
+
 @main.route('/ongoing/periodic', methods=['GET', 'POST'])
 def ongoing_periodic():
     

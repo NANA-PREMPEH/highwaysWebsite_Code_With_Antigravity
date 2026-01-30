@@ -347,6 +347,27 @@ def other_proj():
 
     return render_template('projects/completed/other_proj.html', title='Other Projects', others_list=others_list, posts=posts)
 
+@completed_proj.route('/completed/periodic/bituminous', methods=['GET', 'POST']) 
+def bituminouss():
+    
+    bituminous_list = CompletedProj.query.filter_by(category="Bituminous Surfacing")
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date']
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM completed_proj \
+                                    WHERE category = 'Bituminous Surfacing'  and date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        return jsonify({'data': render_template('projects/completed/bituminous_json.html', q=q)})
+
+    return render_template('projects/completed/bituminous.html', title='Bituminous Surfacing', bituminous_list=bituminous_list, posts=posts)
+
+    # section for viewing
+
 #View Rehabilitation Projects details from the database
 @completed_proj.route('/completed/rehab_proj/view/<int:contract_id>/details') 
 def rehab_contract(contract_id):
@@ -543,4 +564,17 @@ def resurfacing_contract(contract_id):
 
     posts = Post.query.order_by(Post.id.desc()).all()
     return render_template('projects/completed/resurface_details.html', resurface=resurface, contract_id=contract_id, posts=posts)
+
+
+#View All Completed Projects details from the database
+@completed_proj.route('/completed/all_completed_proj/view/<int:contract_id>/details')  
+def all_completed_projects(contract_id):
+    completed = CompletedProj.query.get_or_404(contract_id) 
+    match = re.search(r"youtube\.com/.*v=([^&]*)", completed.video_link)
+    if match:
+        contract_id = match.group(1)
+
+    posts = Post.query.order_by(Post.id.desc()).all()
+    return render_template('projects/completed/all_completed_proj_details.html', completed=completed, contract_id=contract_id, posts=posts)
+
 

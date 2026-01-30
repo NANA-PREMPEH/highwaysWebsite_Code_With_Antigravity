@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, Blueprint, jsonify
 from flask.globals import request
 from trial import db
-from trial.models import Post, Roadcondition, Roadcondition2K19, TerminatedProj, AwardedProj, PlannedProj
+from trial.models import Post, Roadcondition, Roadcondition2K19, TerminatedProj, AwardedProj, PlannedProj, CompletedProj
 from trial.projects.regrav import update_regrav, regrav_data
 from trial.projects.rehab import update_rehab, rehab_data
 from trial.projects.construc import update_construc, construc_data
@@ -117,6 +117,26 @@ def terminated_proj():
         return jsonify({'data': render_template('projects/terminated_json.html', q=q)})
 
     return render_template('projects/terminated_proj.html', title='Terminated Projects', terminated_list=terminated_list, posts=posts)
+
+# new completed projects route (2026)
+@projects.route('/completed/all_completed_proj', methods=['GET', 'POST']) 
+def all_completed_proj():
+    
+    completed_list = CompletedProj.query.all()
+    posts = Post.query.order_by(Post.id.desc()).all()
+
+    if request.method == "POST":
+        start_date = request.form['start_date'] 
+        end_date = request.form['end_date']  
+        
+        q = db.engine.execute("SELECT FORMAT((t1.col_total), 2)   As col_total \
+                                    FROM (SELECT IFNULL(SUM(amt_to_date),0) As col_total FROM completed_proj \
+                                    WHERE date_commenced >= %s  and date_completed<= %s) t1", \
+                                    (start_date, end_date)).first()
+
+        # return jsonify({'data': render_template('projects/awarded_json.html', q=q)})
+
+    return render_template('projects/completed/all_completed_proj.html', title='Completed Projects', completed_list=completed_list, posts=posts)
 
 @projects.route('/awarded/projects', methods=['GET', 'POST']) 
 def awarded_proj():
