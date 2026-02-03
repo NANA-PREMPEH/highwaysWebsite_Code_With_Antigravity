@@ -110,7 +110,114 @@
 </style>
 
 <body>
-
+    
+    <style>
+        .announcement-bar-container {
+            background-color: #002147; /* Dark blue background */
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            border-bottom: 3px solid #fecb00; /* Yellow accent */
+            position: relative;
+            z-index: 26; /* Higher than header's 25 */
+        }
+    
+        /* Push header down when announcement is present */
+        .main_header_area {
+            top: 50px !important;
+            transition: top 0.3s ease;
+        }
+    
+        /* When sticky, reset to top */
+        .main_header_area.navbar_fixed {
+            top: 0px !important;
+        }
+    
+        .announcement-bar {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    
+        .announcement-title {
+            background-color: #fecb00;
+            color: #002147;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 800;
+            font-size: 14px;
+            z-index: 10;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+        }
+    
+        .announcement-content {
+            flex-grow: 1;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    
+        .marquee {
+            white-space: nowrap;
+            position: absolute;
+            animation: marquee 20s linear infinite;
+        }
+        
+        /* Pause on hover */
+        .announcement-content:hover .marquee {
+            animation-play-state: paused;
+        }
+    
+        .announcement-item {
+            margin-right: 50px;
+            display: inline-flex;
+            align-items: center;
+        }
+    
+        .announcement-badge {
+            background-color: #dc3545;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    
+        .announcement-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    
+        @keyframes marquee {
+            0% { left: 100%; }
+            100% { left: -100%; }
+        }
+    </style>
+    
+    <div class="announcement-bar-container">
+        {% if announcements %}
+        <div class="announcement-bar">
+            <div class="announcement-title">ANNOUNCEMENTS</div>
+            <div class="announcement-content">
+                <div class="marquee">
+                    {% for announcement in announcements %}
+                    <span class="announcement-item">
+                        <span class="announcement-badge">NEW</span>
+                        <span class="announcement-text">{{ announcement.title }}: {{ announcement.content }}</span>
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 
     <!--================Header Area =================-->
     <header class="main_header_area">

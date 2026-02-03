@@ -58,6 +58,17 @@ def create_app(config_class=Config):
 
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
         if app.config['ELASTICSEARCH_URL'] else None
+
+    # Global Context Processor for Announcements
+    from trial.models import Announcement
+    @app.context_processor
+    def inject_announcements():
+        try:
+            announcements = Announcement.query.filter_by(is_active=True).order_by(Announcement.date_posted.desc()).all()
+        except:
+            announcements = []
+        return dict(announcements=announcements)
+
    
     #Import the blueprint objects and register with our routes
     from trial.users.routes import users

@@ -4,7 +4,7 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user
 from trial.main.forms import SearchForm
 from trial.projects.forms import DateForm
-from trial.models import CompletedProj, Post, Gallery, User
+from trial.models import CompletedProj, Post, Gallery, User, Announcement
 from trial.users.forms import RequestResetForm, ResetPasswordForm, LoginForm, UpdateAccountForm
 
 
