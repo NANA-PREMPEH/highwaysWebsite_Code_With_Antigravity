@@ -59,15 +59,17 @@ def create_app(config_class=Config):
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
         if app.config['ELASTICSEARCH_URL'] else None
 
-    # Global Context Processor for Announcements
-    from trial.models import Announcement
+    # Global Context Processor for Announcements and Dashboard counts
+    from trial.models import Announcement, Leave
     @app.context_processor
-    def inject_announcements():
+    def inject_global_data():
         try:
             announcements = Announcement.query.filter_by(is_active=True).order_by(Announcement.date_posted.desc()).all()
+            pending_no = Leave.query.filter_by(leave_status="Pending").count()
         except:
             announcements = []
-        return dict(announcements=announcements)
+            pending_no = 0
+        return dict(announcements=announcements, pending_no=pending_no)
 
    
     #Import the blueprint objects and register with our routes

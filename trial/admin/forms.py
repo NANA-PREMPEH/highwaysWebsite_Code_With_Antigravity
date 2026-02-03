@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FloatField, SelectField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, FloatField, SelectField, BooleanField
 from flask_wtf.file import FileField, FileAllowed
 from wtforms.validators import DataRequired, EqualTo, Length, Email, ValidationError
 from trial.models import User
@@ -197,4 +197,12 @@ class PlannedProjectsForm(FlaskForm):
     time_elapsed = StringField(' % Time Elapsed')
     funding = StringField('Funding')
     remarks = TextAreaField('Remarks')
+    remarks = TextAreaField('Remarks')
+    submit = SubmitField('Submit')
+
+#Create Announcement Form
+class AnnouncementForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
+    is_active = BooleanField('Active Status', default=True)
     submit = SubmitField('Submit')

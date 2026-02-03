@@ -3,9 +3,9 @@ import secrets
 from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app, jsonify
 from flask_login import current_user, logout_user, login_required
 from trial.models import (CompletedProj, Post, OngoingProj, User, TerminatedProj, 
-                            AwardedProj, PlannedProj, Gallery, EmployeeDetails)
+                            AwardedProj, PlannedProj, Gallery, EmployeeDetails, Announcement)
 from trial.admin.forms import (RegistrationForm, BlogPostForm, CompletedProjectsForm, UpdateStaffForm, OngoingProjectsForm, 
-                                PlannedProjectsForm,TerminatedProjectsForm, AwardedProjectsForm, GalleryForm)
+                                PlannedProjectsForm,TerminatedProjectsForm, AwardedProjectsForm, GalleryForm, AnnouncementForm)
 from trial.admin.utils import save_photo, save_picture, save_proj_image, save_gallery_image
 import re
 import requests
@@ -960,3 +960,58 @@ def edit_emp_details(emp_id):
 
 
 
+
+# --- Announcement Management Routes ---
+
+@admin.route('/announcements/add', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_announcement():
+    form = AnnouncementForm()
+    if form.validate_on_submit():
+        announcement = Announcement(
+            title=form.title.data,
+            content=form.content.data,
+            is_active=form.is_active.data
+        )
+        db.session.add(announcement)
+        db.session.commit()
+        flash('Announcement added successfully!', 'success')
+        return redirect(url_for('admin.announcements'))
+    return render_template('admin/add_announcement.html', title='Add Announcement', form=form, legend='Add Announcement')
+
+@admin.route('/announcements')
+@login_required
+@admin_required
+def announcements():
+    announcements = Announcement.query.order_by(Announcement.date_posted.desc()).all()
+    return render_template('admin/announcements.html', title='Manage Announcements', announcements=announcements)
+
+@admin.route('/announcements/<int:announcement_id>/update', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def update_announcement(announcement_id):
+    announcement = Announcement.query.get_or_404(announcement_id)
+    form = AnnouncementForm()
+    if form.validate_on_submit():
+        announcement.title = form.title.data
+        announcement.content = form.content.data
+        announcement.is_active = form.is_active.data
+        db.session.commit()
+        flash('Announcement updated successfully!', 'success')
+        return redirect(url_for('admin.announcements'))
+    elif request.method == 'GET':
+        form.title.data = announcement.title
+        form.content.data = announcement.content
+        form.is_active.data = announcement.is_active
+    return render_template('admin/add_announcement.html', title='Update Announcement', form=form, legend='Update Announcement')
+
+@admin.route('/announcements/<int:announcement_id>/delete', methods=['POST'])
+@login_required
+@admin_required
+def delete_announcement(announcement_id):
+    announcement = Announcement.query.get_or_404(announcement_id)
+    db.session.delete(announcement)
+    db.session.commit()
+    flash('Announcement deleted successfully!', 'success')
+    return redirect(url_for('admin.announcements'))

@@ -177,6 +177,22 @@
                                     </a>
                                 </nav>
                             </div>
+                            <!--Announcement Menu-->
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#announcement" aria-expanded="false" aria-controls="announcement">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bullhorn"></i></div>
+                                Announcement
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="announcement" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPagesproj">
+                                    <a class="nav-link" href="{{ url_for('admin.add_announcement') }}">   
+                                        Add Announcement
+                                    </a>
+                                    <a class="nav-link" href="{{ url_for('admin.announcements') }}">
+                                        Manage Announcements
+                                    </a>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
