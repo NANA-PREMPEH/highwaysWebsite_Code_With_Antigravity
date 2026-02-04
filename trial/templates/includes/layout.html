@@ -111,6 +111,7 @@
 
 <body>
     
+    {% if announcements %}
     <style>
         .announcement-bar-container {
             background-color: #002147; /* Dark blue background */
@@ -202,7 +203,6 @@
     </style>
     
     <div class="announcement-bar-container">
-        {% if announcements %}
         <div class="announcement-bar">
             <div class="announcement-title">ANNOUNCEMENTS</div>
             <div class="announcement-content">
@@ -216,8 +216,8 @@
                 </div>
             </div>
         </div>
-        {% endif %}
     </div>
+    {% endif %}
 
     <!--================Header Area =================-->
     <header class="main_header_area">
